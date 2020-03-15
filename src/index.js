@@ -666,8 +666,12 @@ export default (Bookshelf, options = {}) => {
                     }
                 });
 
+                const withRelated = Array.isArray(opts.withRelated)
+                    ? _uniq([...opts.withRelated, ...relations])
+                    : relations;
+
                 // Assign the relations to the options passed to fetch/All
-                _assign(opts, { withRelated: relations });
+                _assign(opts, { withRelated });
             }
         };
 
